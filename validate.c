@@ -6,7 +6,7 @@
 /*   By: yohasega <yohasega@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 12:45:46 by yohasega          #+#    #+#             */
-/*   Updated: 2024/08/17 15:06:07 by yohasega         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:12:19 by yohasega         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 // check number or not except for space and one '-' or '+'
 static int	is_num(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' || str[i] == '\f'
-		|| str[i] == '\r' || str[i] == ' ')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
+	while ((*str >= 9 && *str <= 13) || *str == 32)
+		str++;
+	if (*str == '-' || *str == '+')
+		str++;
+	if (!*str)
+		return (0);
+	while (*str)
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(*str))
 			return (0);
-		i++;
+		str++;
 	}
 	return (1);
 }
